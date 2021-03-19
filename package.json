@@ -1,0 +1,14 @@
+{
+  "name": "image-scroll-viewer",
+  "version": "1.0.0",
+  "description": "An image viewer that allows you to scroll continuously in a group of images in a given path",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Abdullah Al-Shameri",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
