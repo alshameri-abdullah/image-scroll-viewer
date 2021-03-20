@@ -56,6 +56,10 @@ function goToPrevImage(){
     }
 };
 
+function scrollToImage(image){
+    image.scrollIntoView({behavior: 'smooth'});
+}
+
 function openFullscreen() {
     if(document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
