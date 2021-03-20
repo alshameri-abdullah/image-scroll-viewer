@@ -86,8 +86,6 @@ document.addEventListener('scroll', function(e) {
 function checkKey(e) {
     e = e || window.event;
 
-    console.log(e.keyCode);
-
     if (e.keyCode == '37') {
         e.preventDefault();
         goToPrevImage();
