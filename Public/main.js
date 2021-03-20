@@ -2,6 +2,8 @@
 
 const body = document.getElementsByTagName("body");
 const images = document.querySelectorAll('.image');
+const firstImage = images[0];
+const lastImage = images[images.length - 1];
 let currentImage;
 let nextImage;
 let prevImage;
@@ -84,13 +86,20 @@ document.addEventListener('scroll', function(e) {
 function checkKey(e) {
     e = e || window.event;
 
+    console.log(e.keyCode);
+
     if (e.keyCode == '37') {
         e.preventDefault();
         goToPrevImage();
-    }
-    else if (e.keyCode == '39') {
+    } else if (e.keyCode == '39') {
         e.preventDefault();
         goToNextImage();
+    } else if (e.keyCode == '36') {
+        e.preventDefault();
+        scrollToImage(firstImage);
+    } else if (e.keyCode == '35') {
+        e.preventDefault();
+        scrollToImage(lastImage);
     }
 };
 
