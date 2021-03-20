@@ -29,7 +29,6 @@ app.get('/', (req, res) => {
                     images.push(image);
                 }
             });
-            images.shift();
             return res.render('view', { images });
         });
     } else {
