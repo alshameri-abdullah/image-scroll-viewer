@@ -18,8 +18,16 @@ app.get('/', (req, res) => {
     if (dir) {
         fs.readdir(dir, (err, files) => {
             files.forEach(file => {
-                var image = fs.readFileSync(path.join(dir, file), 'base64');
-                images.push(image);
+                if(
+                    path.extname(file) === '.jpg' ||
+                    path.extname(file) === '.jpeg' ||
+                    path.extname(file) === '.png' ||
+                    path.extname(file) === '.svg' ||
+                    path.extname(file) === '.gif'
+                ) {
+                    var image = fs.readFileSync(path.join(dir, file), 'base64');
+                    images.push(image);
+                }
             });
             images.shift();
             return res.render('view', { images });
