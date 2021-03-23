@@ -8,31 +8,31 @@ app.use(express.static('public'));
 
 app.set("view engine", "ejs");
 
-var dir;
-var images = [];
+let dir;
+let images = [];
 
 app.get('/', (req, res) => {
-    dir = req.query.directory;
     images = [];
-    console.log('Your directory is:  ' , dir);
-    if (dir) {
-        fs.readdir(dir, (err, files) => {
-            files.forEach(file => {
-                if(
-                    path.extname(file) === '.jpg' ||
-                    path.extname(file) === '.jpeg' ||
-                    path.extname(file) === '.png' ||
-                    path.extname(file) === '.svg' ||
-                    path.extname(file) === '.gif'
-                ) {
-                    var image = fs.readFileSync(path.join(dir, file), 'base64');
-                    images.push(image);
-                }
-            });
-            return res.render('view', { images });
+    if (req.query.directory) {
+        dir = req.query.directory;
+        console.log('Your directory is:  ' , dir);
+        let files = fs.readdirSync(dir);
+        files.forEach(file => {
+            if(
+                path.extname(file) === '.jpg' ||
+                path.extname(file) === '.jpeg' ||
+                path.extname(file) === '.png' ||
+                path.extname(file) === '.svg' ||
+                path.extname(file) === '.gif'
+            ) {
+                var image = fs.readFileSync(path.join(dir, file), 'base64');
+                images.push(image);
+            }
         });
+        return res.render('view', { images });
+        
     } else {
-        res.sendFile(path.join(__dirname + '/Public/start.html'));
+        return res.sendFile(path.join(__dirname + '/Public/start.html'));
     }
 });
 
