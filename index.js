@@ -32,7 +32,7 @@ app.get('/', (req, res) => {
         return res.render('view', { images });
         
     } else {
-        return res.sendFile(path.join(__dirname + '/Public/start.html'));
+        return res.render('start');
     }
 });
 
