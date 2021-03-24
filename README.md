@@ -40,4 +40,4 @@ node index.js
 Pull requests are welcome.
 
 ## License
-[MIT](https://choosealicense.com/licenses/mit/)
+[MIT](https://github.com/Unique-Phenomenon/image-scroll-viewer/blob/main/license.md)
