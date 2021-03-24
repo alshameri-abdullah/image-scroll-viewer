@@ -44,7 +44,7 @@ function goToNextImage(){
     if(nextImage === null) {
         console.log('No next image');
     } else {
-        nextImage.scrollIntoView({behavior: 'smooth'});
+        nextImage.scrollIntoView();
         updateImagesToNext();
     }  
 };
@@ -53,13 +53,13 @@ function goToPrevImage(){
     if(prevImage === null) {
         console.log('No previous image');
     } else {
-        prevImage.scrollIntoView({behavior: 'smooth'});
+        prevImage.scrollIntoView();
         updateImagesToPrev();
     }
 };
 
 function scrollToImage(image){
-    image.scrollIntoView({behavior: 'smooth'});
+    image.scrollIntoView();
 }
 
 function openFullscreen() {
