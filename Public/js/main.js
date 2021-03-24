@@ -1,6 +1,5 @@
 // Variables // 
 
-const body = document.getElementsByTagName("body");
 const images = document.querySelectorAll('.image');
 const firstImage = images[0];
 const lastImage = images[images.length - 1];
@@ -9,19 +8,20 @@ let nextImage;
 let prevImage;
 let scrollTimeout;
 
+
 // Functions //
 
 function isElementInViewport (el) {
     let rect = el.getBoundingClientRect();
     return (rect.bottom >= 0 && rect.top < window.innerHeight) || 
     (rect.top <=0 && rect.bottom > window.innerHeight)
-};
+}
 
 function updateImagesToNext() {
     prevImage = currentImage;
     currentImage = nextImage;
     nextImage = nextImage.nextElementSibling;
-};
+}
 
 function updateImagesToPrev(){
     nextImage = currentImage;
@@ -36,9 +36,9 @@ function getElementInViewport() {
             nextImage = image.nextElementSibling;
             prevImage = image.previousElementSibling;
             return;
-        };
+        }
     });
-};
+}
 
 function goToNextImage(){
     if(nextImage === null) {
@@ -47,7 +47,7 @@ function goToNextImage(){
         nextImage.scrollIntoView();
         updateImagesToNext();
     }  
-};
+}
 
 function goToPrevImage(){
     if(prevImage === null) {
@@ -56,7 +56,7 @@ function goToPrevImage(){
         prevImage.scrollIntoView();
         updateImagesToPrev();
     }
-};
+}
 
 function scrollToImage(image){
     image.scrollIntoView();
@@ -74,6 +74,7 @@ function openFullscreen() {
     }
 }
 
+
 // Event Listeners & Handlers  //
 
 document.addEventListener('scroll', function(e) {
@@ -86,25 +87,24 @@ document.addEventListener('scroll', function(e) {
 function checkKey(e) {
     e = e || window.event;
 
-    if (e.keyCode == '37') {
+    if (e.keyCode === 37) {
         e.preventDefault();
         goToPrevImage();
-    } else if (e.keyCode == '39') {
+    } else if (e.keyCode === 39) {
         e.preventDefault();
         goToNextImage();
-    } else if (e.keyCode == '36') {
+    } else if (e.keyCode === 36) {
         e.preventDefault();
         scrollToImage(firstImage);
-    } else if (e.keyCode == '35') {
+    } else if (e.keyCode === 35) {
         e.preventDefault();
         scrollToImage(lastImage);
     }
-};
+}
+
 
 // Initialization //
 
 openFullscreen();
-
 getElementInViewport();
-
 document.onkeydown = checkKey;
