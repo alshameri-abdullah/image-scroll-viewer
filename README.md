@@ -33,7 +33,8 @@ node index.js
 
 - You can scroll down using your mouse & `up` & `down` arrow keys
 - You can flip to the next or previous page using `right` & `left` arrow keys
-- You can go to the first or last page using `home` & `end`keys
+- You can go to the first or last page using `home` & `end` keys
+- You can change view-fit using `v` key
  
 
 ## Contributing

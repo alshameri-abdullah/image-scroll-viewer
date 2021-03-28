@@ -62,6 +62,28 @@ function scrollToImage(image){
     image.scrollIntoView();
 }
 
+function fitImages(){
+    images.forEach(image => {
+        image.className = "image image-fit";
+    });
+    scrollToImage(currentImage);
+}
+
+function fillImages(){
+    images.forEach(image => {
+        image.className = "image image-fill";
+    });
+    scrollToImage(currentImage);
+}
+
+function changeFit(){
+    if(images[0].className === "image image-fill"){
+        fitImages();
+    } else {
+        fillImages();
+    }
+}
+
 function openFullscreen() {
     if(document.documentElement.requestFullscreen) {
         document.documentElement.requestFullscreen();
@@ -99,6 +121,9 @@ function checkKey(e) {
     } else if (e.keyCode === 35) {
         e.preventDefault();
         scrollToImage(lastImage);
+    } else if (e.keyCode === 86) {
+        e.preventDefault()
+        changeFit();
     }
 }
 
