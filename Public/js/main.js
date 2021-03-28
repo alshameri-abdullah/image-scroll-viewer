@@ -13,8 +13,7 @@ let scrollTimeout;
 
 function isElementInViewport (el) {
     let rect = el.getBoundingClientRect();
-    return (rect.bottom >= 0 && rect.top < window.innerHeight) || 
-    (rect.top <=0 && rect.bottom > window.innerHeight)
+    return (rect.bottom >= window.innerHeight/2 && rect.top < window.innerHeight/2);
 }
 
 function updateImagesToNext() {
@@ -42,7 +41,7 @@ function getElementInViewport() {
 
 function goToNextImage(){
     if(nextImage === null) {
-        console.log('No next image');
+        scrollToImage(lastImage);
     } else {
         nextImage.scrollIntoView();
         updateImagesToNext();
@@ -51,7 +50,7 @@ function goToNextImage(){
 
 function goToPrevImage(){
     if(prevImage === null) {
-        console.log('No previous image');
+        scrollToImage(firstImage);
     } else {
         prevImage.scrollIntoView();
         updateImagesToPrev();
