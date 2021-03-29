@@ -16,18 +16,6 @@ function isElementInViewport (el) {
     return (rect.bottom >= window.innerHeight/2 && rect.top < window.innerHeight/2);
 }
 
-function updateImagesToNext() {
-    prevImage = currentImage;
-    currentImage = nextImage;
-    nextImage = nextImage.nextElementSibling;
-}
-
-function updateImagesToPrev(){
-    nextImage = currentImage;
-    currentImage = prevImage;
-    prevImage = prevImage.previousElementSibling;
-}
-
 function getElementInViewport() {
     images.forEach(image => {
         if(isElementInViewport(image) === true){
@@ -41,19 +29,17 @@ function getElementInViewport() {
 
 function goToNextImage(){
     if(nextImage === null) {
-        scrollToImage(lastImage);
+        return;
     } else {
         nextImage.scrollIntoView();
-        updateImagesToNext();
     }  
 }
 
 function goToPrevImage(){
     if(prevImage === null) {
-        scrollToImage(firstImage);
+        return;
     } else {
         prevImage.scrollIntoView();
-        updateImagesToPrev();
     }
 }
 
@@ -83,31 +69,17 @@ function changeFit(){
     }
 }
 
-function openFullscreen() {
-    if(document.documentElement.requestFullscreen) {
-        document.documentElement.requestFullscreen();
-    } else if (document.documentElement.mozRequestFullScreen) {
-        document.documentElement.mozRequestFullScreen();
-    } else if (document.documentElement.webkitRequestFullscreen) {
-        document.documentElement.webkitRequestFullscreen();
-    } else if (document.documentElement.msRequestFullscreen) {
-        document.documentElement.msRequestFullscreen();
-    }
-}
 
+// Event Handlers  //
 
-// Event Listeners & Handlers  //
-
-document.addEventListener('scroll', function(e) {
+function checkScroll(e) {
     clearTimeout(scrollTimeout);
     scrollTimeout = setTimeout(function() {
         getElementInViewport();
     }, 100);
-});
+}
 
 function checkKey(e) {
-    e = e || window.event;
-
     if (e.keyCode === 37) {
         e.preventDefault();
         goToPrevImage();
@@ -129,6 +101,7 @@ function checkKey(e) {
 
 // Initialization //
 
-openFullscreen();
+document.documentElement.requestFullscreen();
 getElementInViewport();
 document.onkeydown = checkKey;
+document.onscroll = checkScroll;
