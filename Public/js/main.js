@@ -112,7 +112,11 @@ function checkKey(e) {
 
 // Initialization //
 
-toggleFullScreen();
-getElementInViewport();
-document.onkeydown = checkKey;
-document.onscroll = checkScroll;
+function initialize(){
+    toggleFullScreen();
+    getElementInViewport();
+    document.onkeydown = checkKey;
+    document.onscroll = checkScroll;
+}
+
+window.onload = initialize;
