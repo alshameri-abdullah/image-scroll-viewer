@@ -69,6 +69,14 @@ function changeFit(){
     }
 }
 
+function toggleFullScreen(){
+    if(document.fullscreenElement){
+        document.exitFullscreen();
+    } else {
+        document.documentElement.requestFullscreen();
+    }
+}
+
 
 // Event Handlers  //
 
@@ -93,15 +101,18 @@ function checkKey(e) {
         e.preventDefault();
         scrollToImage(lastImage);
     } else if (e.keyCode === 86) {
-        e.preventDefault()
+        e.preventDefault();
         changeFit();
+    } else if (e.keyCode === 13) {
+        e.preventDefault();
+        toggleFullScreen();
     }
 }
 
 
 // Initialization //
 
-document.documentElement.requestFullscreen();
+toggleFullScreen();
 getElementInViewport();
 document.onkeydown = checkKey;
 document.onscroll = checkScroll;
