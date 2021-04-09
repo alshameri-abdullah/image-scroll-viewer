@@ -31,11 +31,11 @@ node index.js
 
 4. Copy and paste your local directory path of the images / comics / manga you want to view and hit submit
 
-- You can scroll down using your mouse & `up` & `down` arrow keys
+- You can scroll up & down using your mouse or `↑` `↓`
 - You can toggle fullscreen using `enter` key
-- You can flip to the next or previous page using `right` & `left` arrow keys
-- You can go to the first or last page using `home` & `end` keys
-- You can change view-fit using `v` key
+- You can flip to the next or previous page using `←` `→`
+- You can go to the first or last page using `home` & `end`
+- You can change view-fit using `v`
  
 
 ## Contributing
