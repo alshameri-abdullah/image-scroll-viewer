@@ -10,6 +10,13 @@ app.set("view engine", "ejs");
 
 let dir;
 let images = [];
+let recent = [];
+
+if(fs.existsSync(path.join(__dirname, 'recent.json'))){
+    recent = JSON.parse(fs.readFileSync('recent.json'));
+} else {
+    fs.writeFileSync('recent.json', JSON.stringify(recent));
+}
 
 app.get('/', (req, res) => {
     images = [];
@@ -17,6 +24,16 @@ app.get('/', (req, res) => {
         dir = req.query.directory;
         console.log('Your directory is:  ' , dir);
         let files = fs.readdirSync(dir);
+
+        if(recent.includes(dir)){
+            recent.splice(recent.indexOf(dir), 1);
+        }
+        recent.unshift(dir);
+        if(recent.length > 10){
+            recent.pop();
+        }
+        fs.writeFileSync('recent.json', JSON.stringify(recent));
+
         files.forEach(file => {
             if(
                 path.extname(file) === '.jpg' ||
@@ -32,7 +49,7 @@ app.get('/', (req, res) => {
         return res.render('view', { images });
         
     } else {
-        return res.render('start');
+        return res.render('start', { recent });
     }
 });
 
