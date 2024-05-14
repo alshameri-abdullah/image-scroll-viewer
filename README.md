@@ -36,6 +36,7 @@ node index.js
 - You can flip to the next or previous page using `←` `→`
 - You can go to the first or last page using `home` & `end`
 - You can change view-fit using `v`
+- You can zoom in and out using `+` and `-`
  
 
 ## Contributing

@@ -1,6 +1,7 @@
 // Variables // 
 
-const images = document.querySelectorAll('.image');
+const imageContainer = document.querySelector(".images");
+const images = document.querySelectorAll(".image");
 const firstImage = images[0];
 const lastImage = images[images.length - 1];
 let currentImage;
@@ -77,6 +78,21 @@ function toggleFullScreen(){
     }
 }
 
+function zoomOut() {
+    let padding = parseInt(imageContainer.style.paddingLeft.slice(0, -2) || 0);
+
+    if(padding < 600)
+        imageContainer.style.paddingLeft = imageContainer.style.paddingRight =
+            String(padding + 100) + "px";
+}
+
+function zoomIn() {
+    let padding = parseInt(imageContainer.style.paddingLeft.slice(0, -2) || 0);
+
+    if(padding >= 0)
+        imageContainer.style.paddingLeft = imageContainer.style.paddingRight =
+            String(padding - 100) + "px";
+}
 
 // Event Handlers  //
 
@@ -106,6 +122,12 @@ function checkKey(e) {
     } else if (e.keyCode === 13) {
         e.preventDefault();
         toggleFullScreen();
+    } else if (e.keyCode === 109) {
+        e.preventDefault();
+        zoomOut();
+    } else if (e.keyCode === 107) {
+        e.preventDefault();
+        zoomIn();
     }
 }
 
