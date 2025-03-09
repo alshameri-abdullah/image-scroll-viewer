@@ -40,6 +40,7 @@ app.get('/', (req, res) => {
                 path.extname(file) === '.jpeg' ||
                 path.extname(file) === '.png' ||
                 path.extname(file) === '.svg' ||
+                path.extname(file) === '.webp' ||
                 path.extname(file) === '.gif'
             ) {
                 var image = fs.readFileSync(path.join(dir, file), 'base64');
